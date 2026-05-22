@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>TikTok Auth Bridge</title>
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <p style="font-family:sans-serif">Đang chuyển về local backend…</p>
+  <script>
+    // TikTok đã redirect tới đây với ?code=...&state=...
+    // Forward nguyên querystring về API local (chỉ chạy được khi máy bạn đang chạy `pnpm dev:api`).
+    var qs = window.location.search;
+    var target = 'http://localhost:3000/oauth/tiktok/callback' + qs;
+    window.location.replace(target);
+  </script>
+  <noscript>Vui lòng bật JavaScript để hoàn tất.</noscript>
+  <p style="font-family:sans-serif;color:#666;font-size:13px">
+    Nếu không tự chuyển trong 3 giây,
+    <a id="manual">bấm vào đây</a>.
+  </p>
+  <script>
+    document.getElementById('manual').href =
+      'http://localhost:3000/oauth/tiktok/callback' + window.location.search;
+  </script>
+</body>
+</html>
